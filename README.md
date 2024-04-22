@@ -20,3 +20,4 @@
 Sprint 2--> 1, 2 y 5||
 Sprint 3--> 7 y 8||
 Sprint 4--> 6 y 9
+https://docs.google.com/document/d/1a9TV8MGhMjX8WTOP3VHH7lqKK0so4mMRrxp3KyXIgNY/edit
