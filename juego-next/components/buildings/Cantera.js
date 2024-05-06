@@ -5,7 +5,7 @@ class Cantera extends Building {
     }
   
     // Métodos específicos de la cantera
-    collectGold() {
-      // Lógica para recolectar oro
+    collectStone() {
+      // Lógica para recolectar piedra
     }
   }

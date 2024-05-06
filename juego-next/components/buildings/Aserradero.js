@@ -5,7 +5,7 @@ class Aserradero extends Building {
     }
   
     // Métodos específicos del aserradero
-    collectGold() {
-      // Lógica para recolectar oro
+    collectWood() {
+      // Lógica para recolectar madera
     }
   }
