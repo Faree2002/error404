@@ -6,3 +6,4 @@ class AlmacenPiedra extends Building {
   
     // Métodos específicos del almacen de piedra
   }
+  export default AlmacenPiedra;

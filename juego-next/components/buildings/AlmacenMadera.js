@@ -6,4 +6,4 @@ class AlmacenMadera extends Building {
   
     // Métodos específicos del almacen de madera
   }
-  
+  export default AlmacenMadera;
