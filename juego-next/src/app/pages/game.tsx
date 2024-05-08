@@ -1,11 +1,13 @@
-// pages/game.js
+// pages/game.tsx
 
 import React from 'react';
 
 function game() {
   return (
     <div style={{ backgroundColor: 'green', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <h1 style={{ color: 'white' }}>¡Bienvenido al Juego!</h1>
+      <div style={{ position: 'relative' }}>
+        <img src="/images/WE - House.png" alt="House" style={{ maxWidth: '100%', maxHeight: '100%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
+      </div>
     </div>
   );
 }
