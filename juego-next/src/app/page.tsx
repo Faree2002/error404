@@ -9,7 +9,7 @@ export default function Home() {
       <h1 className="text-3xl font-bold mb-8">¡Bienvenido a mi aplicación!</h1>
       
       {/* Enlace a la página del juego principal */}
-      <Link href="/src/app/pages/game.tsx">
+      <Link href="/game">
         ¡Jugar al juego!
       </Link>
     </main>
