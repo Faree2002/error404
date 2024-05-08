@@ -1,5 +1,9 @@
 class Building {
-    constructor(positionX, positionY, cost, capacity) {
+  positionX: number;
+  positionY: number;
+  cost: number;
+  capacity: number;
+    constructor(positionX: number, positionY: number, cost: number, capacity: number) {
       this.positionX = positionX;
       this.positionY = positionY;
       this.cost = cost;
