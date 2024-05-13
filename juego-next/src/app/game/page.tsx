@@ -5,9 +5,14 @@ import React, { useState } from 'react';
 function Game() {
   const [imageVisible, setImageVisible] = useState(false);
   const [selectedPosition, setSelectedPosition] = useState({ x: 0, y: 0 });
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleButtonClick = () => {
-    setImageVisible(true);
+  const handleMenuClick = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleTiendaClick = () => {
+    setImageVisible(!imageVisible);
   };
 
   const handleImageClick = (event: React.MouseEvent<HTMLImageElement>) => {
@@ -18,32 +23,50 @@ function Game() {
   };
 
   return (
-    <div className="bg-grassGreen min-h-screen flex items-center justify-center">
-      <div className="relative h-64 w-64">
-        {imageVisible && (
+    <div className="bg-Grey min-h-screen flex items-center justify-center relative">
+      {/* Botón del menú hamburguesa */}
+      <div className="absolute top-4 left-4">
+        <button
+          className="text-amber-400 hover:text-amber-300 focus:outline-none"
+          onClick={handleMenuClick}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            {menuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+            )}
+          </svg>
+        </button>
+      </div>
+      {/* Menú desplegable */}
+        {menuOpen && (
+          <div className="absolute left-0 top-12 left-4 z-10">
+            <div className="bg-amber-400 rounded-lg shadow-md py-2 px-4">
+          <button
+            className="block w-full text-left text-amber-400 hover:text-amber-300 focus:outline-none py-2"
+            onClick={handleTiendaClick}
+          >
+            Tienda
+          </button>
+            </div>
+          </div>
+        )}
+        {/* Imagen */}
+      {imageVisible && (
+        <div className={`absolute transition-all top-10 left-15 ${menuOpen ? 'w-50' : 'w-0'} overflow-hidden z-10`}>
           <img
             src="/images/WE - House.png"
             alt="House"
-            className="w-1/2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+            className="w-full cursor-pointer"
             onClick={handleImageClick}
           />
-        )}
-      </div>
-      <div className="absolute bottom-4 left-4">
-        <button
-          className="bg-amber-400 hover:bg-amber-300 text-white font-bold drop-shadow-[0_1.2px_1.5px_rgba(0,0,0,0.8)] py-2 px-4 border border-amber-400 rounded-full"
-          style={{ textShadow: '0.5px 0.5px black, -0.5px -0.5px black, 0.5px -0.5px black, -0.5px 0.5px black' }}
-          onClick={handleButtonClick}
-        >
-          Tienda
-        </button>
-      </div>
-      {selectedPosition && (
-        <div
-          className="absolute"
-          style={{ left: selectedPosition.x, top: selectedPosition.y }}
-        >
-          <img src="/images/WE - House.png" alt="House" className="w-1/2" />
         </div>
       )}
     </div>
