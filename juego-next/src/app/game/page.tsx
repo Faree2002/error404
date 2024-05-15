@@ -1,10 +1,14 @@
 'use client'
 
 import React, { useState } from 'react';
+import AlmacenMadera from '../models/buildings/AlmacenMadera';
+import AlmacenPiedra from '../models/buildings/AlmacenPiedra';
+import Aserradero from '../models/buildings/Aserradero';
+import Cantera from '../models/buildings/Cantera';
+import bui from '../models/buildings/Building';
 
 function Game() {
   const [imageVisible, setImageVisible] = useState(false);
-  const [selectedPosition, setSelectedPosition] = useState({ x: 0, y: 0 });
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
@@ -15,19 +19,16 @@ function Game() {
     setImageVisible(!imageVisible);
   };
 
-  const handleImageClick = (event: React.MouseEvent<HTMLImageElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    setSelectedPosition({ x, y });
+  const handleBuildingClick = (building: string) => {
+    console.log(`Building ${building} was clicked.`);
   };
 
   return (
-    <div className="bg-Grey min-h-screen flex items-center justify-center relative">
+    <div className="bg-Grey flex items-left relative">
       {/* Botón del menú hamburguesa */}
       <div className="absolute top-4 left-4">
         <button
-          className="text-amber-400 hover:text-amber-300 focus:outline-none"
+          className="text-black hover:text-amber-300 focus:outline-none"
           onClick={handleMenuClick}
         >
           <svg
@@ -45,30 +46,47 @@ function Game() {
           </svg>
         </button>
       </div>
+
       {/* Menú desplegable */}
-        {menuOpen && (
-          <div className="absolute left-0 top-12 left-4 z-10">
-            <div className="bg-amber-400 rounded-lg shadow-md py-2 px-4">
-          <button
-            className="block w-full text-left text-amber-400 hover:text-amber-300 focus:outline-none py-2"
-            onClick={handleTiendaClick}
-          >
-            Tienda
-          </button>
-            </div>
+      {menuOpen && (
+        <div className="absolute left-15 top-6 left-10 z-10">
+          <div className="bg-amber-400 rounded-lg shadow-md py-2 px-4">
+            <button
+              className="block top-0 text-left text-Black hover:text-amber-300 focus:outline-none py-2"
+              onClick={handleTiendaClick}
+            >
+              Tienda
+            </button>
           </div>
-        )}
-        {/* Imagen */}
-      {imageVisible && (
-        <div className={`absolute transition-all top-10 left-15 ${menuOpen ? 'w-50' : 'w-0'} overflow-hidden z-10`}>
-          <img
-            src="/images/WE - House.png"
-            alt="House"
-            className="w-full cursor-pointer"
-            onClick={handleImageClick}
-          />
         </div>
       )}
+
+      {/* Contenedor del fondo e imágenes */}
+      <div className="absolute left-10 top-20">
+        {/* Imágenes */}
+        {imageVisible && (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+            <img
+              src="/images/We - House.png"
+              alt="Casa"
+              className="w-20 h-20 cursor-pointer"
+              onClick={() => handleBuildingClick('house')}
+            />
+            <img
+              src="/images/We - Lumber Camp.png"
+              alt="Campamento de Madera"
+              className="w-20 h-20 cursor-pointer"
+              onClick={() => handleBuildingClick('lumberCamp')}
+            />
+            <img
+              src="/images/We - Mining Camp.png"
+              alt="Campamento de Madera"
+              className="w-20 h-20 cursor-pointer"
+              onClick={() => handleBuildingClick('miningCamp')}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

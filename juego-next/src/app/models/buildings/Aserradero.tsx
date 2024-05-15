@@ -1,3 +1,5 @@
+import Building from './Building'; // Import the Building class
+
 class Aserradero extends Building {
     woodProductionRate: number; // Add this line to define the property
     wood: number;

@@ -22,4 +22,6 @@ class Building {
   
     // Otros métodos comunes
   }
+
+export default Building;
   

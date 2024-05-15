@@ -1,3 +1,5 @@
+import Building from './Building'; // Import the Building class
+
 class AlmacenPiedra extends Building {
     constructor(positionX: number, positionY: number) {
       super(positionX, positionY, 300, 1500); // Costo: 300, capacidad: 1500

@@ -1,3 +1,5 @@
+import Building from './Building'; // Import the Building class
+
 class Cantera extends Building {
     stoneProductionRate: number; // Add this line to define the property
     stone: number;
