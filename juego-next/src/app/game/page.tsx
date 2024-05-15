@@ -10,8 +10,26 @@ import Building from '../models/buildings/Building';
 function Game() {
   const [imageVisible, setImageVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const initialMoney = 1000; // Dinero inicial del jugador
-  
+  const initialMoney = 1000; // Cantidad inicial de dinero
+  const [money, setMoney] = useState(initialMoney);
+  const [showBuildings, setShowBuildings] = useState(false); // Estado para mostrar/ocultar los edificios
+
+  const buildBuilding = (buildingCost: number) => {
+    if (money >= buildingCost) {
+      setMoney(money - buildingCost);
+      // Lógica para construir el edificio...
+    } else {
+      alert('No tienes suficiente dinero para construir este edificio.');
+    }
+  };
+
+  const buildingTypes = [
+    new AlmacenMadera(0, 0),
+    new AlmacenPiedra(0, 0),
+    new Aserradero(0, 0),
+    new Cantera(0, 0),
+    // Agrega más edificios según necesites
+  ];
 
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen);
@@ -68,24 +86,36 @@ function Game() {
         {/* Imágenes */}
         {imageVisible && (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-            <img
-              src="/images/We - House.png"
-              alt="Casa"
+            <button
               className="w-20 h-20 cursor-pointer"
               onClick={() => handleBuildingClick('house')}
-            />
-            <img
-              src="/images/We - Lumber Camp.png"
-              alt="Campamento de Madera"
+            >
+              <img
+                src="/images/We - House.png"
+                alt="Casa"
+                className="w-full h-full"
+              />
+            </button>
+            <button
               className="w-20 h-20 cursor-pointer"
               onClick={() => handleBuildingClick('lumberCamp')}
-            />
-            <img
-              src="/images/We - Mining Camp.png"
-              alt="Campamento de Madera"
+            >
+              <img
+                src="/images/We - Lumber Camp.png"
+                alt="Campamento de Madera"
+                className="w-full h-full"
+              />
+            </button>
+            <button
               className="w-20 h-20 cursor-pointer"
               onClick={() => handleBuildingClick('miningCamp')}
-            />
+            >
+              <img
+                src="/images/We - Mining Camp.png"
+                alt="Campamento de Madera"
+                className="w-full h-full"
+              />
+            </button>
           </div>
         )}
       </div>
