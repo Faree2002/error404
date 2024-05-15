@@ -8,7 +8,7 @@ import Cantera from '../models/buildings/Cantera';
 import Building from '../models/buildings/Building';
 
 function Game() {
-  const initialMoney = 1000; // Cantidad inicial de dinero
+  const initialMoney = 10000; // Cantidad inicial de dinero
   const [money, setMoney] = useState(initialMoney);
   const [selectedBuilding, setSelectedBuilding] = useState<{ name: string; cost: number } | null>(null); // Edificio seleccionado
   const [showBuildings, setShowBuildings] = useState(false); // Estado para mostrar/ocultar las imágenes de los edificios
@@ -24,9 +24,9 @@ function Game() {
   };
 
   const buildingTypes: { name: string; cost: number }[] = [
-    { name: 'We - House', cost: 1000 },
-    { name: 'We - Lumber Camp', cost: 1500 },
-    { name: 'We - Mining Camp', cost: 2000 },
+    { name: 'House', cost: 1000 },
+    { name: 'Lumber Camp', cost: 1500 },
+    { name: 'Mining Camp', cost: 2000 },
     // Agrega más edificios según necesites
   ];
 
@@ -40,7 +40,7 @@ function Game() {
 
   return (
     <div className="bg-grassGreen min-h-screen relative flex flex-col items-center justify-center">
-      <p className="text-white font-bold absolute top-0 left-0 m-4">Dinero: ${money}</p>
+      <p className="text-white font-bold absolute top-0 right-0 m-4">Dinero: ${money}</p>
       {/* Botón del menú hamburguesa */}
       <div className="absolute top-4 left-4">
         <button
@@ -73,16 +73,24 @@ function Game() {
           {showBuildings && (
             <div className="flex flex-col mt-2">
               {buildingTypes.map((building, index) => (
-                <img
-                  key={index}
-                  src={`/images/${building.name}.png`}
-                  alt={building.name}
-                  className="w-1/2 cursor-pointer"
-                  onClick={() => handleBuildingClick(building)}
-                />
+                <div key={index} className="flex flex-col items-center">
+                  <p className="text-gray-800">{building.name} = ${building.cost}</p>
+                  <div className="flex items-center justify-between w-full">
+                    <img
+                      src={`/images/${building.name}.png`}
+                      alt={building.name}
+                      className="w-1/2 cursor-pointer"
+                      onClick={() => handleBuildingClick(building)}
+                    />
+                    {/* Botón para construir el edificio */}
+                    <button onClick={() => buildBuilding(building.cost)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-2 rounded-md">Construir</button>
+                  </div>
+                </div>
               ))}
             </div>
           )}
+
+
         </div>
       )}
     </div>
