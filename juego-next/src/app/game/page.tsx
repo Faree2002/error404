@@ -5,11 +5,13 @@ import AlmacenMadera from '../models/buildings/AlmacenMadera';
 import AlmacenPiedra from '../models/buildings/AlmacenPiedra';
 import Aserradero from '../models/buildings/Aserradero';
 import Cantera from '../models/buildings/Cantera';
-import bui from '../models/buildings/Building';
+import Building from '../models/buildings/Building';
 
 function Game() {
   const [imageVisible, setImageVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const initialMoney = 1000; // Dinero inicial del jugador
+  
 
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen);
