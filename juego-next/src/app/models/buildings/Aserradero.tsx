@@ -1,9 +1,19 @@
+import Building from './Building';
+
 class Aserradero extends Building {
+  name: string;
+  cost: number;
+  capacity: number;
+  description: string;
     woodProductionRate: number; // Add this line to define the property
     wood: number;
     lastCollectionTime: number;
     constructor(positionX: number, positionY: number) {
-      super(positionX, positionY, 150, 1000); // Costo: 150, capacidad: 1000
+      super(positionX, positionY); // Costo: 150, capacidad: 1000
+      this.name = "Aserradero"; // Establecer el nombre del aserradero
+      this.cost = 150; // Establece el costo
+      this.capacity = 1000; // Establece la capacidad
+      this.description = "Genera madera (4 por minuto).";
       this.woodProductionRate = 4; // Producción de madera por minuto
       this.wood = 0; // Inicialmente el aserradero no tiene madera recolectada
       this.lastCollectionTime = 0;
