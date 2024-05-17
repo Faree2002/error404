@@ -13,15 +13,19 @@ function Game() {
   const [selectedBuilding, setSelectedBuilding] = useState<{ name: string; cost: number } | null>(null); // Edificio seleccionado
   const [showBuildings, setShowBuildings] = useState(false); // Estado para mostrar/ocultar las imágenes de los edificios
   const [menuOpen, setMenuOpen] = useState(false); // Estado del menú hamburguesa
+  const [showBoughtBuildings, setShowBoughtBuildings] = useState(false); // Estado para mostrar/ocultar los edificios comprados
 
-  const buildBuilding = (buildingCost: number) => {
-    if (money >= buildingCost) {
-      setMoney(money - buildingCost);
+  const buildBuilding = (building: { name: string; cost: number }) => {
+    if (money >= building.cost) {
+      setMoney(money - building.cost);
+      setBoughtBuildings([...boughtBuildings, building]);
       // Lógica para construir el edificio...
     } else {
       alert('No tienes suficiente dinero para construir este edificio.');
     }
   };
+  const [view, setView] = useState<'tienda' | 'inventario' | null>(null);
+  const [boughtBuildings, setBoughtBuildings] = useState<{ name: string; cost: number }[]>([]);
 
   const buildingTypes: { name: string; cost: number }[] = [
     { name: 'House', cost: 1000 },
@@ -66,9 +70,18 @@ function Game() {
       {menuOpen && (
         <div className="absolute top-12 left-4 bg-white p-2 border border-gray-300 rounded-md shadow-md">
           {/* Botón para mostrar/ocultar las imágenes */}
-          <button onClick={() => setShowBuildings(!showBuildings)} className="bg-amber-400 hover:bg-amber-300 text-white font-bold drop-shadow-[0_1.2px_1.5px_rgba(0,0,0,0.8)] py-2 px-4 border border-amber-400 rounded-full" style={{ textShadow: '0.5px 0.5px black, -0.5px -0.5px black, 0.5px -0.5px black, -0.5px 0.5px black' }}>
-            Tienda
-          </button>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <button onClick={() => setShowBuildings(!showBuildings)}
+              className="bg-amber-400 hover:bg-amber-300 text-white font-bold drop-shadow-[0_1.2px_1.5px_rgba(0,0,0,0.8)] py-2 px-4 border border-amber-400 rounded-full"
+              style={{ textShadow: '0.5px 0.5px black, -0.5px -0.5px black, 0.5px -0.5px black, -0.5px 0.5px black' }}>
+              Tienda
+            </button>
+            <button onClick={() => setShowBoughtBuildings(!showBoughtBuildings)}
+              className="bg-amber-400 hover:bg-amber-300 text-white font-bold drop-shadow-[0_1.2px_1.5px_rgba(0,0,0,0.8)] py-2 px-4 border border-amber-400 rounded-full mt-2"
+              style={{ textShadow: '0.5px 0.5px black, -0.5px -0.5px black, 0.5px -0.5px black, -0.5px 0.5px black' }}>
+              Inventario
+            </button>
+          </div>
           {/* Imágenes de los edificios */}
           {showBuildings && (
             <div className="flex flex-col mt-2">
@@ -83,14 +96,26 @@ function Game() {
                       onClick={() => handleBuildingClick(building)}
                     />
                     {/* Botón para construir el edificio */}
-                    <button onClick={() => buildBuilding(building.cost)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-2 rounded-md">Construir</button>
+                    <button onClick={() => buildBuilding(building)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-2 rounded-md">Construir</button>
                   </div>
                 </div>
               ))}
             </div>
           )}
-
-
+          {showBoughtBuildings && (
+            <div className="flex flex-col mt-2">
+              {boughtBuildings.map((building, index) => (
+                <div key={index} className="flex flex-col items-center">
+                  <p className="text-gray-800">{building.name} = ${building.cost}</p>
+                  <img
+                    src={`/images/${building.name}.png`}
+                    alt={building.name}
+                    className="w-1/2"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
