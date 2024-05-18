@@ -1,19 +1,17 @@
-import Building from './Building';
+import React from 'react';
 
-class AlmacenMadera extends Building {
-  name: string;
-  cost: number;
-  capacity: number;
-  description: string;
-    constructor(positionX: number, positionY: number) {
-      super(positionX, positionY); // Costo: 300, capacidad: 1500
-      this.name = "Almacén de Madera"; // Establecer el nombre del almacén de madera
-      this.cost = 300; // Establece el costo
-      this.capacity = 1500; // Establece la capacidad
-      this.description = "Almacena madera.";
-      // Otros atributos específicos del almacen de madera
-    }
-  
-    // Métodos específicos del almacen de madera
-  }
-  export default AlmacenMadera;
+interface AlmacenMaderaProps {
+  positionX: number;
+  positionY: number;
+}
+
+const AlmacenMadera: React.FC<AlmacenMaderaProps> = ({ positionX, positionY }) => {
+  return (
+    <div>
+      {/* Representación del Almacen de Madera */}
+      <p>Almacen de Madera - Posición: ({positionX}, {positionY})</p>
+    </div>
+  );
+};
+
+export default AlmacenMadera;

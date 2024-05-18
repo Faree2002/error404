@@ -1,31 +1,14 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
-import AlmacenMadera from '../models/buildings/AlmacenMadera';
-import AlmacenPiedra from '../models/buildings/AlmacenPiedra';
-import Aserradero from '../models/buildings/Aserradero';
-import Cantera from '../models/buildings/Cantera';
-import Building from '../models/buildings/Building';
 
 function Game() {
   const initialMoney = 10000; // Cantidad inicial de dinero
   const [money, setMoney] = useState(initialMoney);
-  const [selectedBuilding, setSelectedBuilding] = useState<{ name: string; cost: number } | null>(null); // Edificio seleccionado
   const [showBuildings, setShowBuildings] = useState(false); // Estado para mostrar/ocultar las imágenes de los edificios
   const [menuOpen, setMenuOpen] = useState(false); // Estado del menú hamburguesa
   const [showBoughtBuildings, setShowBoughtBuildings] = useState(false); // Estado para mostrar/ocultar los edificios comprados
-
-  const buildBuilding = (building: { name: string; cost: number }) => {
-    if (money >= building.cost) {
-      setMoney(money - building.cost);
-      setBoughtBuildings([...boughtBuildings, building]);
-      // Lógica para construir el edificio...
-    } else {
-      alert('No tienes suficiente dinero para construir este edificio.');
-    }
-  };
-  const [view, setView] = useState<'tienda' | 'inventario' | null>(null);
-  const [boughtBuildings, setBoughtBuildings] = useState<{ name: string; cost: number }[]>([]);
+  const [boughtBuildings, setBoughtBuildings] = useState<{ name: string; cost: number; count: number }[]>([]);
 
   const buildingTypes: { name: string; cost: number }[] = [
     { name: 'House', cost: 1000 },
@@ -34,12 +17,33 @@ function Game() {
     // Agrega más edificios según necesites
   ];
 
-  const handleBuildingClick = (building: { name: string; cost: number }) => {
-    setSelectedBuilding(building);
+  const buildBuilding = (building: { name: string; cost: number }) => {
+    if (money >= building.cost) {
+      setMoney(money - building.cost);
+      const existingBuilding = boughtBuildings.find(b => b.name === building.name);
+      if (existingBuilding) {
+        existingBuilding.count += 1;
+        setBoughtBuildings([...boughtBuildings]);
+      } else {
+        setBoughtBuildings([...boughtBuildings, { ...building, count: 1 }]);
+      }
+    } else {
+      alert('No tienes suficiente dinero para construir este edificio.');
+    }
   };
 
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const toggleShowBuildings = () => {
+    setShowBuildings(!showBuildings);
+    if (showBoughtBuildings) setShowBoughtBuildings(false); // Cerrar inventario si tienda está abierta
+  };
+
+  const toggleShowBoughtBuildings = () => {
+    setShowBoughtBuildings(!showBoughtBuildings);
+    if (showBuildings) setShowBuildings(false); // Cerrar tienda si inventario está abierto
   };
 
   return (
@@ -71,12 +75,12 @@ function Game() {
         <div className="absolute top-12 left-4 bg-white p-2 border border-gray-300 rounded-md shadow-md">
           {/* Botón para mostrar/ocultar las imágenes */}
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <button onClick={() => setShowBuildings(!showBuildings)}
+            <button onClick={toggleShowBuildings}
               className="bg-amber-400 hover:bg-amber-300 text-white font-bold drop-shadow-[0_1.2px_1.5px_rgba(0,0,0,0.8)] py-2 px-4 border border-amber-400 rounded-full"
               style={{ textShadow: '0.5px 0.5px black, -0.5px -0.5px black, 0.5px -0.5px black, -0.5px 0.5px black' }}>
               Tienda
             </button>
-            <button onClick={() => setShowBoughtBuildings(!showBoughtBuildings)}
+            <button onClick={toggleShowBoughtBuildings}
               className="bg-amber-400 hover:bg-amber-300 text-white font-bold drop-shadow-[0_1.2px_1.5px_rgba(0,0,0,0.8)] py-2 px-4 border border-amber-400 rounded-full mt-2"
               style={{ textShadow: '0.5px 0.5px black, -0.5px -0.5px black, 0.5px -0.5px black, -0.5px 0.5px black' }}>
               Inventario
@@ -93,7 +97,7 @@ function Game() {
                       src={`/images/${building.name}.png`}
                       alt={building.name}
                       className="w-1/2 cursor-pointer"
-                      onClick={() => handleBuildingClick(building)}
+                      onClick={() => buildBuilding(building)}
                     />
                     {/* Botón para construir el edificio */}
                     <button onClick={() => buildBuilding(building)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-2 rounded-md">Construir</button>
@@ -107,11 +111,18 @@ function Game() {
               {boughtBuildings.map((building, index) => (
                 <div key={index} className="flex flex-col items-center">
                   <p className="text-gray-800">{building.name} = ${building.cost}</p>
-                  <img
-                    src={`/images/${building.name}.png`}
-                    alt={building.name}
-                    className="w-1/2"
-                  />
+                  <div className="relative">
+                    <img
+                      src={`/images/${building.name}.png`}
+                      alt={building.name}
+                      className="w-1/2"
+                    />
+                    {building.count > 1 && (
+                      <span className="absolute bottom-0 right-0 bg-black text-white text-xs px-1 rounded-full">
+                        x{building.count}
+                      </span>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>

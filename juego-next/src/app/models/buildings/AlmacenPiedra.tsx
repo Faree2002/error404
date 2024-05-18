@@ -1,19 +1,18 @@
-import Building from './Building';
+// AlmacenPiedra.tsx
+import React from 'react';
 
-class AlmacenPiedra extends Building {
-  name: string;
-  cost: number;
-  capacity: number;
-  description: string;
-    constructor(positionX: number, positionY: number) {
-      super(positionX, positionY); // Costo: 300, capacidad: 1500
-      this.name = "Almacén de Piedra"; // Establecer el nombre del almacén de piedra
-      this.cost = 300; // Establece el costo
-      this.capacity = 1500; // Establece la capacidad
-      this.description = "Almacena piedra.";
-      // Otros atributos específicos del almacen de piedra
-    }
-  
-    // Métodos específicos del almacen de piedra
-  }
-  export default AlmacenPiedra;
+interface AlmacenPiedraProps {
+  positionX: number;
+  positionY: number;
+}
+
+const AlmacenPiedra: React.FC<AlmacenPiedraProps> = ({ positionX, positionY }) => {
+  return (
+    <div>
+      {/* Representación del Almacen de Piedra */}
+      <p>Almacen de Piedra - Posición: ({positionX}, {positionY})</p>
+    </div>
+  );
+};
+
+export default AlmacenPiedra;
