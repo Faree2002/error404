@@ -10,7 +10,7 @@ class AlmacenMadera extends Building {
       this.name = "Almacén de Madera"; // Establecer el nombre del almacén de madera
       this.cost = 300; // Establece el costo
       this.capacity = 1500; // Establece la capacidad
-      this.description = "Almacena madera.";
+      this.description = "Capacidad: 1500";
       // Otros atributos específicos del almacen de madera
     }
   

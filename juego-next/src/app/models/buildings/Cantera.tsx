@@ -13,7 +13,7 @@ class Cantera extends Building {
       this.name = "Cantera"; // Establecer el nombre de la cantera
       this.cost = 150; // Establece el costo
       this.capacity = 1000; // Establece la capacidad
-      this.description = "Genera piedra (4 por minuto).";
+      this.description = "Genera 240 por hora";
       this.stoneProductionRate = 4; // Producción de piedra por minuto
       this.stone = 0; // Inicialmente la cantera no tiene piedra recolectada
       this.lastCollectionTime = 0;

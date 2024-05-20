@@ -13,7 +13,7 @@ class Aserradero extends Building {
       this.name = "Aserradero"; // Establecer el nombre del aserradero
       this.cost = 150; // Establece el costo
       this.capacity = 1000; // Establece la capacidad
-      this.description = "Genera madera (4 por minuto).";
+      this.description = "Genera 240 por hora";
       this.woodProductionRate = 4; // Producción de madera por minuto
       this.wood = 0; // Inicialmente el aserradero no tiene madera recolectada
       this.lastCollectionTime = 0;

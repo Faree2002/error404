@@ -29,7 +29,6 @@ function Game() {
     // Agrega más edificios según necesites
   ];
 
-
   return (
     <div className="bg-grassGreen min-h-screen relative flex flex-col items-center justify-center">
       <p className="text-white font-bold absolute top-0 left-0 m-4">Dinero: ${money}</p>
@@ -41,14 +40,21 @@ function Game() {
           Tienda
         </button>
         {showBuildings && (
-          <div className="absolute bottom-14 left-4 bg-white p-2 border border-gray-300 rounded-md shadow-md">
+          <div className="absolute bottom-14 left-4 bg-white p-2 border border-gray-300 rounded-md shadow-md w-80">
             <h3 className="text-gray-800 font-semibold mb-2">Edificios disponibles:</h3>
             <ul>
               {buildingTypes.map((building, index) => (
-                <li key={index} className="text-gray-800 flex justify-between items-center">
-                  <span>{building.name}</span>
-                  <span>${building.cost}</span>
-                  <button onClick={() => buildBuilding(building.cost)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-2 rounded-md">Construir</button>
+                <li key={index} className="text-gray-800 mb-4">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <span className="font-semibold">{building.name}</span>
+                      <span className="ml-4">${building.cost}</span>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center mt-2">
+                    <p className="text-sm">{building.description}</p>
+                    <button onClick={() => buildBuilding(building.cost)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-2 rounded-md">Construir</button>
+                  </div>
                 </li>
               ))}
             </ul>
