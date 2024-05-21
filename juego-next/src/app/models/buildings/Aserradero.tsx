@@ -10,7 +10,7 @@ class Aserradero extends Building {
       this.capacity = 1000; // Establece la capacidad
       this.woodProductionRate = 4; // Producción de madera por minuto
       this.wood = 0; // Inicialmente el aserradero no tiene madera recolectada
-      this.lastCollectionTime = 0;
+      this.lastCollectionTime = Date.now();
       // Otros atributos específicos del aserradero
     }
   
@@ -25,8 +25,8 @@ class Aserradero extends Building {
       // Actualizar el tiempo de la última recolección de madera
       this.lastCollectionTime = currentTime;
   
-      // Actualizar la cantidad total de madera recolectada
-      this.wood += woodCollected;
+      // Asegurarse de que la cantidad total de madera no exceda la capacidad
+      this.wood = Math.min(this.capacity, this.wood + woodCollected);
   
       // Devolver la cantidad de madera recolectada
       return woodCollected;

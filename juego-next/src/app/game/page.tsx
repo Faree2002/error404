@@ -5,6 +5,7 @@ import AlmacenMadera from '../models/buildings/AlmacenMadera';
 import AlmacenPiedra from '../models/buildings/AlmacenPiedra';
 import Aserradero from '../models/buildings/Aserradero';
 import Cantera from '../models/buildings/Cantera';
+import Barracas from '../models/buildings/Barracas';
 import Building from '../models/buildings/Building';
 
 function Game() {
@@ -44,6 +45,7 @@ function Game() {
     new AlmacenPiedra(0, 0),
     new Aserradero(0, 0),
     new Cantera(0, 0),
+    new Barracas(0, 0),
     // Agrega más edificios según necesites
   ];
 

@@ -10,7 +10,7 @@ class Cantera extends Building {
       this.capacity = 1000; // Establece la capacidad
       this.stoneProductionRate = 4; // Producción de piedra por minuto
       this.stone = 0; // Inicialmente la cantera no tiene piedra recolectada
-      this.lastCollectionTime = 0;
+      this.lastCollectionTime = Date.now();
       // Otros atributos específicos de la cantera
     }
   
@@ -25,8 +25,8 @@ class Cantera extends Building {
       // Actualizar el tiempo de la última recolección de piedra
       this.lastCollectionTime = currentTime;
   
-      // Actualizar la cantidad total de piedra recolectada
-      this.stone += stoneCollected;
+      // Asegurarse de que la cantidad total de piedra no exceda la capacidad
+      this.stone = Math.min(this.capacity, this.stone + stoneCollected);
   
       // Devolver la cantidad de piedra recolectada
       return stoneCollected;
