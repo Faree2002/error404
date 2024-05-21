@@ -23,7 +23,7 @@ async function Navbar() {
               <Link href="/auth/register">Register</Link>
             </li>
             <li>
-              <Link href="/game/page">Juego</Link>
+              <Link href="/game">Juego</Link>
             </li>
           </>
         ) : (
