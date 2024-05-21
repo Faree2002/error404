@@ -29,7 +29,7 @@ async function Navbar() {
         ) : (
           <>
             <li>
-              <Link href="/dashboard">Dashboard</Link>
+              <Link href="/game">Jugar</Link>
             </li>
             <li>
               <Link href="/api/auth/signout">Logout</Link>
