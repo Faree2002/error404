@@ -1,13 +1,9 @@
 class Building {
   positionX: number;
   positionY: number;
-  cost: number;
-  capacity: number;
-    constructor(positionX: number, positionY: number, cost: number, capacity: number) {
+    constructor(positionX: number, positionY: number) {
       this.positionX = positionX;
       this.positionY = positionY;
-      this.cost = cost;
-      this.capacity = capacity;
       // Otros atributos comunes
     }
   
@@ -23,3 +19,4 @@ class Building {
     // Otros métodos comunes
   }
   
+  export default Building;

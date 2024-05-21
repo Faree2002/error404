@@ -1,3 +1,0 @@
-Error404-npx create-next-app@latest
-
-Server-npm install
