@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/login/route";
 
 async function Navbar() {
   const session = await getServerSession(authOptions);
@@ -23,7 +23,7 @@ async function Navbar() {
               <Link href="/auth/register">Register</Link>
             </li>
             <li>
-              <Link href="/auth/register">Juego</Link>
+              <Link href="/game/page">Juego</Link>
             </li>
           </>
         ) : (
