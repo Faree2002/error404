@@ -33,11 +33,13 @@ function Game() {
       setSelectedBuilding(building); // Selecciona el edificio para construir
       setShowBuildings(false); // Oculta la tienda
 
+      {/*
       if (building instanceof AlmacenMadera) {
         setWood(wood + 100); // Agrega madera al contador (por ejemplo)
       } else if (building instanceof AlmacenPiedra) {
         setStone(stone + 100); // Agrega piedra al contador (por ejemplo)
       }
+*/}
     } else {
       alert('No tienes suficiente dinero para construir este edificio.');
     }
@@ -69,21 +71,21 @@ function Game() {
     if (selectedBuilding && buildingPosition) {
       // Agregar el edificio a la lista de edificios construidos
       setBuiltBuildings([...builtBuildings, { building: selectedBuilding, x: buildingPosition.x, y: buildingPosition.y }]);
-      
+
       // Iniciar recolección automática del recurso si es un aserradero o una cantera
       if (selectedBuilding instanceof Aserradero) {
         startResourceCollection('wood');
       } else if (selectedBuilding instanceof Cantera) {
         startResourceCollection('stone');
       }
-  
+
       setSelectedBuilding(null);
       setBuildingPosition(null);
     } else {
       handleHideDeletionMenu(); // Llama a la función para restablecer los valores de trainKnights y trainArchers
     }
   };
-  
+
 
   const handleBuildingClick = (building: { building: Building, x: number, y: number }, e: React.MouseEvent) => {
     e.stopPropagation(); // Evita que el clic se propague al manejador de clic global
@@ -99,21 +101,21 @@ function Game() {
       } else if (selectedBuildingForDeletion.building instanceof Cantera) {
         stopResourceCollection('stone');
       }
-  
+
       const updatedBuildings = builtBuildings.filter(b => b !== selectedBuildingForDeletion);
       setBuiltBuildings(updatedBuildings);
       setMoney(money + selectedBuildingForDeletion.building.cost);
-  
+
       if (selectedBuildingForDeletion.building instanceof AlmacenMadera) {
         setWood(wood - 100); // Resta madera del contador (por ejemplo)
       } else if (selectedBuildingForDeletion.building instanceof AlmacenPiedra) {
         setStone(stone - 100); // Resta piedra del contador (por ejemplo)
       }
-  
+
       setSelectedBuildingForDeletion(null);
       setShowDeletionMenu(null);
     }
-  };  
+  };
 
   useEffect(() => {
     // Recolectar madera automáticamente cada segundo

@@ -6,7 +6,7 @@ class Aserradero extends Building {
     wood: number;
     lastCollectionTime: number;
     constructor(positionX: number, positionY: number) {
-      super("Aserradero", 150, "Genera 240 por hora", positionX, positionY); // Costo: 150, capacidad: 1000
+      super("Aserradero", 150, "Genera 1 de madera por segundo", positionX, positionY); // Costo: 150, capacidad: 1000
       this.capacity = 1000; // Establece la capacidad
       this.woodProductionRate = 4; // Producción de madera por minuto
       this.wood = 0; // Inicialmente el aserradero no tiene madera recolectada

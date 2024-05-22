@@ -6,7 +6,7 @@ class Cantera extends Building {
     stone: number;
     lastCollectionTime: number;
     constructor(positionX: number, positionY: number) {
-      super("Cantera", 150, "Genera 240 por hora", positionX, positionY); // Costo: 150, capacidad: 1000
+      super("Cantera", 150, "Genera 1 de piedra por segundo", positionX, positionY); // Costo: 150, capacidad: 1000
       this.capacity = 1000; // Establece la capacidad
       this.stoneProductionRate = 4; // Producción de piedra por minuto
       this.stone = 0; // Inicialmente la cantera no tiene piedra recolectada
