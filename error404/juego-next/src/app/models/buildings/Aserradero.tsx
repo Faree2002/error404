@@ -1,22 +1,16 @@
 import Building from './Building';
 
 class Aserradero extends Building {
-  name: string;
-  cost: number;
   capacity: number;
-  description: string;
     woodProductionRate: number; // Add this line to define the property
     wood: number;
     lastCollectionTime: number;
     constructor(positionX: number, positionY: number) {
-      super(positionX, positionY); // Costo: 150, capacidad: 1000
-      this.name = "Aserradero"; // Establecer el nombre del aserradero
-      this.cost = 150; // Establece el costo
+      super("Aserradero", 150, "Genera 1 de madera por segundo", positionX, positionY); // Costo: 150, capacidad: 1000
       this.capacity = 1000; // Establece la capacidad
-      this.description = "Genera madera (4 por minuto).";
       this.woodProductionRate = 4; // Producción de madera por minuto
       this.wood = 0; // Inicialmente el aserradero no tiene madera recolectada
-      this.lastCollectionTime = 0;
+      this.lastCollectionTime = Date.now();
       // Otros atributos específicos del aserradero
     }
   
@@ -31,8 +25,8 @@ class Aserradero extends Building {
       // Actualizar el tiempo de la última recolección de madera
       this.lastCollectionTime = currentTime;
   
-      // Actualizar la cantidad total de madera recolectada
-      this.wood += woodCollected;
+      // Asegurarse de que la cantidad total de madera no exceda la capacidad
+      this.wood = Math.min(this.capacity, this.wood + woodCollected);
   
       // Devolver la cantidad de madera recolectada
       return woodCollected;

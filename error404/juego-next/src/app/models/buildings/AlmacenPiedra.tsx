@@ -1,18 +1,13 @@
-// AlmacenPiedra.tsx
-import React from 'react';
+import Building from './Building';
 
-interface AlmacenPiedraProps {
-  positionX: number;
-  positionY: number;
-}
-
-const AlmacenPiedra: React.FC<AlmacenPiedraProps> = ({ positionX, positionY }) => {
-  return (
-    <div>
-      {/* Representación del Almacen de Piedra */}
-      <p>Almacen de Piedra - Posición: ({positionX}, {positionY})</p>
-    </div>
-  );
-};
-
-export default AlmacenPiedra;
+class AlmacenPiedra extends Building {
+  capacity: number;
+    constructor(positionX: number, positionY: number) {
+      super("Almacén de Piedra", 300, "Capacidad: 1500", positionX, positionY); // Costo: 300, capacidad: 1500
+      this.capacity = 1500; // Establece la capacidad
+      // Otros atributos específicos del almacen de piedra
+    }
+  
+    // Métodos específicos del almacen de piedra
+  }
+  export default AlmacenPiedra;

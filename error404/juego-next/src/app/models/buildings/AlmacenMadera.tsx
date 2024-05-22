@@ -1,17 +1,13 @@
-import React from 'react';
+import Building from './Building';
 
-interface AlmacenMaderaProps {
-  positionX: number;
-  positionY: number;
-}
-
-const AlmacenMadera: React.FC<AlmacenMaderaProps> = ({ positionX, positionY }) => {
-  return (
-    <div>
-      {/* Representación del Almacen de Madera */}
-      <p>Almacen de Madera - Posición: ({positionX}, {positionY})</p>
-    </div>
-  );
-};
-
-export default AlmacenMadera;
+class AlmacenMadera extends Building {
+  capacity: number;
+    constructor(positionX: number, positionY: number) {
+      super("Almacén de Madera", 300, "Capacidad: 1500", positionX, positionY); // Costo: 300, capacidad: 1500
+      this.capacity = 1500; // Establece la capacidad
+      // Otros atributos específicos del almacen de madera
+    }
+  
+    // Métodos específicos del almacen de madera
+  }
+  export default AlmacenMadera;

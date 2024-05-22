@@ -1,22 +1,16 @@
 import Building from './Building';
 
 class Cantera extends Building {
-  name: string;
-  cost: number;
   capacity: number;
-  description: string;
     stoneProductionRate: number; // Add this line to define the property
     stone: number;
     lastCollectionTime: number;
     constructor(positionX: number, positionY: number) {
-      super(positionX, positionY); // Costo: 150, capacidad: 1000
-      this.name = "Cantera"; // Establecer el nombre de la cantera
-      this.cost = 150; // Establece el costo
+      super("Cantera", 150, "Genera 1 de piedra por segundo", positionX, positionY); // Costo: 150, capacidad: 1000
       this.capacity = 1000; // Establece la capacidad
-      this.description = "Genera piedra (4 por minuto).";
       this.stoneProductionRate = 4; // Producción de piedra por minuto
       this.stone = 0; // Inicialmente la cantera no tiene piedra recolectada
-      this.lastCollectionTime = 0;
+      this.lastCollectionTime = Date.now();
       // Otros atributos específicos de la cantera
     }
   
@@ -31,8 +25,8 @@ class Cantera extends Building {
       // Actualizar el tiempo de la última recolección de piedra
       this.lastCollectionTime = currentTime;
   
-      // Actualizar la cantidad total de piedra recolectada
-      this.stone += stoneCollected;
+      // Asegurarse de que la cantidad total de piedra no exceda la capacidad
+      this.stone = Math.min(this.capacity, this.stone + stoneCollected);
   
       // Devolver la cantidad de piedra recolectada
       return stoneCollected;
