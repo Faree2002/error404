@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AlmacenMadera from '../models/buildings/AlmacenMadera';
 import AlmacenPiedra from '../models/buildings/AlmacenPiedra';
 import Aserradero from '../models/buildings/Aserradero';
@@ -24,6 +24,9 @@ function Game() {
   const [trainKnights, setTrainKnights] = useState(0); // Cantidad de caballeros a entrenar
   const [trainArchers, setTrainArchers] = useState(0); // Cantidad de arqueras a entrenar
 
+  const [collectingWood, setCollectingWood] = useState(false); // Estado para recolección automática de madera
+  const [collectingStone, setCollectingStone] = useState(false); // Estado para recolección automática de piedra
+
   const buildBuilding = (building: Building) => {
     if (money >= building.cost) {
       setMoney(money - building.cost);
@@ -40,6 +43,22 @@ function Game() {
     }
   };
 
+  const startResourceCollection = (resource: 'wood' | 'stone') => {
+    if (resource === 'wood') {
+      setCollectingWood(true);
+    } else if (resource === 'stone') {
+      setCollectingStone(true);
+    }
+  };
+
+  const stopResourceCollection = (resource: 'wood' | 'stone') => {
+    if (resource === 'wood') {
+      setCollectingWood(false);
+    } else if (resource === 'stone') {
+      setCollectingStone(false);
+    }
+  };
+
   const handleMouseMove = (e: React.MouseEvent) => {
     if (selectedBuilding) {
       setBuildingPosition({ x: e.clientX, y: e.clientY });
@@ -48,13 +67,23 @@ function Game() {
 
   const handleMouseClick = (e: React.MouseEvent) => {
     if (selectedBuilding && buildingPosition) {
+      // Agregar el edificio a la lista de edificios construidos
       setBuiltBuildings([...builtBuildings, { building: selectedBuilding, x: buildingPosition.x, y: buildingPosition.y }]);
+      
+      // Iniciar recolección automática del recurso si es un aserradero o una cantera
+      if (selectedBuilding instanceof Aserradero) {
+        startResourceCollection('wood');
+      } else if (selectedBuilding instanceof Cantera) {
+        startResourceCollection('stone');
+      }
+  
       setSelectedBuilding(null);
       setBuildingPosition(null);
     } else {
-      setShowDeletionMenu(null); // Oculta el menú de eliminación al hacer clic fuera de él
+      handleHideDeletionMenu(); // Llama a la función para restablecer los valores de trainKnights y trainArchers
     }
   };
+  
 
   const handleBuildingClick = (building: { building: Building, x: number, y: number }, e: React.MouseEvent) => {
     e.stopPropagation(); // Evita que el clic se propague al manejador de clic global
@@ -64,20 +93,49 @@ function Game() {
 
   const handleDeleteBuilding = () => {
     if (selectedBuildingForDeletion) {
+      // Verificar si el edificio seleccionado es un aserradero o una cantera
+      if (selectedBuildingForDeletion.building instanceof Aserradero) {
+        stopResourceCollection('wood');
+      } else if (selectedBuildingForDeletion.building instanceof Cantera) {
+        stopResourceCollection('stone');
+      }
+  
       const updatedBuildings = builtBuildings.filter(b => b !== selectedBuildingForDeletion);
       setBuiltBuildings(updatedBuildings);
       setMoney(money + selectedBuildingForDeletion.building.cost);
-
+  
       if (selectedBuildingForDeletion.building instanceof AlmacenMadera) {
         setWood(wood - 100); // Resta madera del contador (por ejemplo)
       } else if (selectedBuildingForDeletion.building instanceof AlmacenPiedra) {
         setStone(stone - 100); // Resta piedra del contador (por ejemplo)
       }
-
+  
       setSelectedBuildingForDeletion(null);
       setShowDeletionMenu(null);
     }
-  };
+  };  
+
+  useEffect(() => {
+    // Recolectar madera automáticamente cada segundo
+    let woodInterval: NodeJS.Timeout;
+    if (collectingWood) {
+      woodInterval = setInterval(() => {
+        setWood(prevWood => prevWood + 1); // Ajusta la cantidad de madera recolectada según sea necesario
+      }, 1000);
+    }
+    return () => clearInterval(woodInterval);
+  }, [collectingWood]);
+
+  useEffect(() => {
+    // Recolectar piedra automáticamente cada segundo
+    let stoneInterval: NodeJS.Timeout;
+    if (collectingStone) {
+      stoneInterval = setInterval(() => {
+        setStone(prevStone => prevStone + 1); // Ajusta la cantidad de piedra recolectada según sea necesario
+      }, 1000);
+    }
+    return () => clearInterval(stoneInterval);
+  }, [collectingStone]);
 
   const handleTrainTroops = (e: React.MouseEvent) => {
     e.stopPropagation(); // Evita que el clic se propague al manejador de clic global
@@ -99,6 +157,12 @@ function Game() {
 
   const handleInputClick = (e: React.MouseEvent) => {
     e.stopPropagation(); // Evita que el clic se propague al manejador de clic global
+  };
+
+  const handleHideDeletionMenu = () => {
+    setShowDeletionMenu(null);
+    setTrainKnights(0);
+    setTrainArchers(0);
   };
 
   const buildingTypes = [
@@ -187,17 +251,19 @@ function Game() {
           Tienda
         </button>
         {showBuildings && (
-          <div className="absolute bottom-14 left-4 bg-white p-2 border border-gray-300 rounded-md shadow-md w-64">
+          <div className="absolute bottom-14 left-4 z-10 bg-white p-2 border border-gray-300 rounded-md shadow-md w-64">
             <h3 className="text-gray-800 font-semibold mb-2">Edificios disponibles:</h3>
             <ul>
               {buildingTypes.map((building, index) => (
                 <li key={index} className="text-gray-800 mb-4">
                   <div className="flex justify-between items-center">
-                    <span className="font-semibold">{building.name}</span>
-                    <span className="ml-4">${building.cost}</span>
+                    <div>
+                      <span className="font-semibold">{building.name}</span>
+                      <span className="ml-4">${building.cost}</span>
+                      <p className="text-sm">{building.description}</p>
+                    </div>
+                    <button onClick={() => buildBuilding(building)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-2 rounded-md mt-2">Construir</button>
                   </div>
-                  <p className="text-sm">{building.description}</p>
-                  <button onClick={() => buildBuilding(building)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-2 rounded-md mt-2">Construir</button>
                 </li>
               ))}
             </ul>
@@ -209,7 +275,7 @@ function Game() {
           key={index}
           src={`/images/${built.building.name}.png`}
           alt={built.building.name}
-          className="absolute cursor-pointer"
+          className="absolute cursor-pointer z-0"
           style={{
             left: `${built.x}px`,
             top: `${built.y}px`,
@@ -222,7 +288,7 @@ function Game() {
         <img
           src={`/images/${selectedBuilding.name}.png`}
           alt={selectedBuilding.name}
-          className="absolute pointer-events-none"
+          className="absolute pointer-events-none z-0"
           style={{
             left: `${buildingPosition.x}px`,
             top: `${buildingPosition.y}px`,
