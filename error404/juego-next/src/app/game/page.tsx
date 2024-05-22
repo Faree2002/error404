@@ -241,7 +241,7 @@ function Game() {
   };
 
   return (
-    <div className="bg-grassGreen min-h-screen relative flex flex-col items-center justify-center" onMouseMove={handleMouseMove} onClick={handleMouseClick}>
+    <div className="bg-gradient-to-t from-grassGreen to-grassGreenLight min-h-screen relative flex flex-col items-center justify-center" onMouseMove={handleMouseMove} onClick={handleMouseClick}>
       <p className="text-white font-bold absolute top-0 left-0 m-4">Dinero: ${money}</p>
       <p className="text-white font-bold absolute top-0 left-0 mt-8 ml-4">Madera: {wood}</p>
       <p className="text-white font-bold absolute top-0 left-0 mt-12 ml-4">Piedra: {stone}</p>

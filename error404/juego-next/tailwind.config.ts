@@ -16,6 +16,7 @@ const config: Config = {
       },
       colors: {
         grassGreen: '#41980a',
+        grassGreenLight: '#56c70e',
       },
     },
     

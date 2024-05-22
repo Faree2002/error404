@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {/* Contenido de tu página principal */}
-      <h1 className="text-3xl font-bold mb-8">¡Bienvenido a mi aplicación!</h1>
+      <h1 className="text-3xl font-bold mb-8">¡Bienvenido a Game of Truenos!</h1>
       
       {/* Enlace a la página del juego principal */}
       <Link href="/game">
