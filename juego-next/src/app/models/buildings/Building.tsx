@@ -4,6 +4,8 @@ class Building {
   description: string;
   positionX: number;
   positionY: number;
+  knightCost?: number; // Optional property
+  archerCost?: number; // Optional property
   constructor(name: string, cost: number, description: string, positionX: number, positionY: number) {
       this.name = name;
       this.cost = cost;

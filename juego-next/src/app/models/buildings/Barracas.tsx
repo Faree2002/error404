@@ -5,12 +5,16 @@ class Barracas extends Building {
     unities: number;
     unitiesProductionRate : number;
     lastProductionTime: number;
+    knightCost: number;
+    archerCost: number;
     constructor(positionX: number, positionY: number) {
       super("Barracas", 100, "Entrena unidades", positionX, positionY); // Costo: 100
       this.capacity = 10; // Establece la capacidad
       this.unitiesProductionRate = 6; // Producción de unidades por minuto
       this.unities = 0; // Inicialmente no hay unidades
       this.lastProductionTime = Date.now();
+      this.knightCost = 10; // Costo de entrenamiento por Caballero
+      this.archerCost = 20; // Costo de entrenamiento por Arquera
       // Otros atributos específicos de Barracas
     }
   
