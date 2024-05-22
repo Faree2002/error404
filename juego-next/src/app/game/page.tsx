@@ -106,11 +106,13 @@ function Game() {
       setBuiltBuildings(updatedBuildings);
       setMoney(money + selectedBuildingForDeletion.building.cost);
 
+      {/*
       if (selectedBuildingForDeletion.building instanceof AlmacenMadera) {
         setWood(wood - 100); // Resta madera del contador (por ejemplo)
       } else if (selectedBuildingForDeletion.building instanceof AlmacenPiedra) {
         setStone(stone - 100); // Resta piedra del contador (por ejemplo)
       }
+*/}
 
       setSelectedBuildingForDeletion(null);
       setShowDeletionMenu(null);
