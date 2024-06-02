@@ -10,7 +10,7 @@ export default function LoginPage() {
         <hr className='my-5'/>
         <LoginForm />
         <div className='text-sm text-center text-neutral-500 mt-5'>
-          Not have an accout? <Link href={"/signup"} className="font-bold text-neutral-900">Register</Link>
+          Not have an accout? <Link href={"/auth/signup"} className="font-bold text-neutral-900">Register</Link>
         </div>
       </div>
     </div>
