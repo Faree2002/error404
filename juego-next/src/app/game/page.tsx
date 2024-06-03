@@ -245,7 +245,7 @@ function Game() {
     <div className="bg-gradient-to-t from-grassGreen to-grassGreenLight min-h-screen relative flex flex-col items-center justify-center" onMouseMove={handleMouseMove} onClick={handleMouseClick}>
       {/* Botón Chat */}
       <button
-        onClick={() => window.open('/chat', '_blank')}
+        onClick={() => window.open('/chat')}
         className="absolute top-4 right-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
         Chat
       </button>
