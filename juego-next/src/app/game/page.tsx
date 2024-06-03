@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import AlmacenMadera from '../models/buildings/AlmacenMadera';
 import AlmacenPiedra from '../models/buildings/AlmacenPiedra';
@@ -242,6 +243,12 @@ function Game() {
 
   return (
     <div className="bg-gradient-to-t from-grassGreen to-grassGreenLight min-h-screen relative flex flex-col items-center justify-center" onMouseMove={handleMouseMove} onClick={handleMouseClick}>
+      {/* Botón Chat */}
+      <button
+        onClick={() => window.open('/chat', '_blank')}
+        className="absolute top-4 right-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+        Chat
+      </button>
       <p className="text-white font-bold absolute top-0 left-0 m-4">Dinero: ${money}</p>
       <p className="text-white font-bold absolute top-0 left-0 mt-8 ml-4">Madera: {wood}</p>
       <p className="text-white font-bold absolute top-0 left-0 mt-12 ml-4">Piedra: {stone}</p>
