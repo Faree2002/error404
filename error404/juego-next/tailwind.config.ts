@@ -9,14 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
+        loginfoto:"url('/images/Age_of_Empires.png')",
+        fondoAge:"url('/images/Pasto.jpg')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
           
       },
       colors: {
-        grassGreen: '#41980a',
-        grassGreenLight: '#56c70e',
+        //grassGreen: '#41980a',
+        //grassGreenLight: '#56c70e',
       },
     },
     
