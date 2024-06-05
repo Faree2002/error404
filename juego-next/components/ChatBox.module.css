@@ -35,6 +35,8 @@
       Helvetica Neue,
       sans-serif;
     font-size: 1.2em;
+    color: #000;
+    resize: none;
   }
   
   .button {

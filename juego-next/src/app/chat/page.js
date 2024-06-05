@@ -8,7 +8,7 @@ const Chat = dynamic(() => import('../../../components/Chat'), {
 
 export default function ChatWindow() {
   return (
-    <div className="container">
+    <div className="w-full">
       <Head>
         <title>Realtime Chat App with Ably, NextJS and Vercel</title>
         <link rel="icon" href="https://static.ably.dev/motif-red.svg?nextjs-vercel" type="image/svg+xml" />
