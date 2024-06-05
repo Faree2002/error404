@@ -1,0 +1,9 @@
+npm install next
+npm i -D prisma
+npm install @prisma/client
+npm i bcrypt react-hot-toast axios
+npm install bcrypt 
+npm i --save-dev @types/bcrypt
+npm next-auth
+npx prisma db push
+npm install ably
