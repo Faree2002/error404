@@ -48,7 +48,7 @@ export default function RegisterForm() {
           onChange={(e) => setEmail(e.target.value)}
           disabled={loading}
         />
-        <Input 
+        <Input        
           label='Password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}

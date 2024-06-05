@@ -27,7 +27,7 @@ export default function LoginForm() {
 
     if(login?.ok){
       toast.success("Correct login");
-      window.location.assign("/");
+      window.location.assign("/game");
     }
     else if(login?.error){
       toast.error(login?.error);
