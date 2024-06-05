@@ -13,11 +13,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id String @db.ObjectId @default(auto()) @map("_id") @id
-  email String
-  hashedPassword String
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  materials Material[]
+  buildings Building[]
+}
 
-  createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt
+model Material {
+  id     String @id @default(uuid())
+  type   String
+  amount Int
+  owner  User   @relation(fields: [userId], references: [id])
+  userId String
+}
+
+model Building {
+  id       String @id @default(uuid())
+  type     String
+  position String
+  owner    User   @relation(fields: [userId], references: [id])
+  userId   String
 }
