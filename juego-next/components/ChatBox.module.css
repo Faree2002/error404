@@ -39,12 +39,33 @@
     resize: none;
   }
   
+  .resourceButtons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .resourceInput {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    color: #000;
+  }
+
   .button {
     border: 0;
     color: white;
     font-weight: bold;
     font-size: 1.4em;
     background: linear-gradient(to right, #363795, #005c97);
+  }
+
+  .warning {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .resourcesAvailable {
+    margin-top: 10px;
   }
   
   .button:hover {
