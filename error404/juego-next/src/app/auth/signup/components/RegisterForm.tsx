@@ -31,7 +31,7 @@ export default function RegisterForm() {
 
         toast.success("Successfully registered");
 
-        router.push("/signin");
+        router.push("/auth/signin");
       } catch(err: any){
         console.log(err);
         toast.error(err?.response?.data)
