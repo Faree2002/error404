@@ -57,7 +57,7 @@ export default function RegisterForm() {
         />
         <div
           onClick={register}
-          className='px-10 py-3 bg-neutral-900 rounded-full text-white disabled:opacity-70 cursor-pointer'
+          className='px-10 py-3 bg-blue-500 hover:bg-blue-700 rounded-full text-white disabled:opacity-70 cursor-pointer'
         >
           Register
         </div>
