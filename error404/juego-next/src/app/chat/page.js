@@ -15,7 +15,7 @@ export default function ChatWindow() {
       </Head>
 
       <main>
-        <h1 className="title">Next.js Chat Demo</h1>
+        <h1 className=" title">GAME OF TRUENOS</h1>
         <Chat />
       </main>
     </div>

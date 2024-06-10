@@ -9,6 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
+        presentacion:"url('/images/presentacion.png')",
+        Logo:"url('/images/Logo.png')",
         loginfoto:"url('/images/Age_of_Empires.png')",
         fondoAge:"url('/images/Pasto.jpg')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
