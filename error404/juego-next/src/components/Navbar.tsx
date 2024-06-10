@@ -8,7 +8,10 @@ async function Navbar() {
 
   return (
     <nav className="flex justify-between items-center bg-gray-950 text-white px-24 py-3">
-      <h1 className="text-xl font-bold">Game of Truenos</h1>
+      <h1 className="flex items-center text-xl font-bold">
+        <img className="w-6 h-6 mr-2" src="favicon.ico" alt="Logo" />
+        Game of Truenos
+      </h1>
 
       <ul className="flex gap-x-2">
         {!session?.user ? (
