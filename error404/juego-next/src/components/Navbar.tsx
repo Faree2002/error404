@@ -33,9 +33,6 @@ async function Navbar() {
         ) : (
           <>
             <li>
-              <Link href="/dashboard">Dashboard</Link>
-            </li>
-            <li>
               <Link href="/api/auth/signout">Logout</Link>
             </li>
           </>
