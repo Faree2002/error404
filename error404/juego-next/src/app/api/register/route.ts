@@ -33,8 +33,25 @@ export async function POST(
         hashedPassword: hashedPassword,
       }
     });
+    const id = newUser.id
+    const Dinero = 1000;
+    const Madera = 0;
+    const Piedra = 0;
+    const Caballeros = 0;
+    const Arqueras = 0;
 
-    return NextResponse.json(newUser);
+    const newGame = await prismadb.game.create({
+      data: {
+        id: id,
+        dinero: Dinero,
+        Madera: Madera,
+        Piedra: Piedra,
+        Caballeros: Caballeros,
+        Arqueras: Arqueras,
+      }
+    });
+
+    return NextResponse.json(newGame), NextResponse.json(newUser);
     
   } catch(err: any){
     console.log("REGISTER_ERR: " + err);
