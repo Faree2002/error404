@@ -9,11 +9,6 @@ export default function Home() {
       <h1 className="text-3xl font-bold mb-8 text-white shadow-lg">Bienvenido a Game of Truenos</h1>
 
       {/* Enlace a la página del juego principal */}
-      <Link href="/auth/signup" passHref>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Registrarse
-        </button>
-      </Link>
       <Link href="/auth/signin" passHref>
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Ingresar
