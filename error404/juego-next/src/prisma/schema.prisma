@@ -21,3 +21,26 @@ model User{
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt
 }
+
+model Game{
+  id String @db.ObjectId @map("_id") @id
+  dinero Int 
+  Madera Int
+  Piedra Int
+  Caballeros Int
+  Arqueras Int
+
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model Building{
+  id String @db.ObjectId @map("_id") @id
+  posX String
+  posY String
+  BuildingType String
+  BuildingAlive Boolean
+
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
