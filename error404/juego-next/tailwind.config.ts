@@ -12,6 +12,11 @@ const config: Config = {
         presentacion:"url('/images/presentacion.png')",
         Logo:"url('/images/Logo.png')",
         loginfoto:"url('/images/Age_of_Empires.png')",
+        Aldea1:"url('/images/Aldea1.png')",
+        Aldea2:"url('/images/Aldea2.png')",
+        Aldea3:"url('/images/Aldea3.png')",
+        Aldea4:"url('/images/Aldea4.png')",
+        fondomap:"url('/images/map.png')",
         fondoAge:"url('/images/Pasto.jpg')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
