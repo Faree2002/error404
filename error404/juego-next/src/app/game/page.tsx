@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/router';
+
 import React, { useState, useEffect } from 'react';
 import AlmacenMadera from '../models/buildings/AlmacenMadera';
 import AlmacenPiedra from '../models/buildings/AlmacenPiedra';
@@ -249,6 +249,14 @@ function Game() {
         className="absolute top-4 right-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
         Chat
       </button>
+      {/*Botón Mapa */}
+      <button
+          onClick={() => window.open('/map', '_self')}
+          className="absolute bottom-2 right-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+        >
+          🌍Map
+        </button> 
+        {/*Botón Mapa */}
       <p className="text-white font-bold absolute top-0 left-0 m-4">Dinero: ${money}</p>
       <p className="text-white font-bold absolute top-0 left-0 mt-8 ml-4">Madera: {wood}</p>
       <p className="text-white font-bold absolute top-0 left-0 mt-12 ml-4">Piedra: {stone}</p>
